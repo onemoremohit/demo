@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trip Companion - About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://wallpaperaccess.com/full/4455673.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-button.login {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .nav-button.login:hover {
+      background: #e6b800;
+    }
+
+    /* Adjust main content to account for fixed nav */
+    .content {
+      margin-top: 70px;
+    }
+
+    .overlay {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.15);
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 16px;
+      backdrop-filter: blur(2px);
+      color: #ffffff;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .mission {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mission h2 {
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Remove bottom navigation bar styles */
+    /* Bottom Navigation Bar */
+
+
+    .nav-item {
+        text-decoration: none;
+        color: #ffffff;
+        text-align: center;
+        padding: 10px 15px;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+                   -5px -5px 10px rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        min-width: 70px;
+    }
+
+    .nav-item i {
+        font-size: 18px;
+    }
+
+    .nav-item span {
+        font-size: 11px;
+    }
+
+    .nav-item:hover {
+        background: linear-gradient(145deg, #2d2d2d, #1d1d1d);
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3),
+                   -6px -6px 12px rgba(255, 255, 255, 0.07);
+        color: #00b4d8;
+    }
+
+    .nav-item.active {
+        background: linear-gradient(145deg, #0077b6, #005f8e);
+        color: white;
+    }
+
+    .back-to-login a:hover {
+      text-decoration: underline;
+    }
+
+    /* Remove bottom navigation bar styles */
+    @media (max-width: 768px) {
+        .bottom-nav {
+            padding: 10px 0;
+        }
+
+        .bottom-nav ul {
+            padding: 0 8px;
+            gap: 4px;
+        }
+
+        .nav-item {
+            min-width: 55px;
+            padding: 8px 10px;
+        }
+
+        .nav-item i {
+            font-size: 16px;
+        }
+
+        .nav-item span {
+            font-size: 10px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <a href="home.html" class="logo">TRIP COMPANION</a>
+    <div class="nav-buttons">
+      <a href="home.html" class="nav-button">Home</a>
+      <a href="features.html" class="nav-button">Features</a>
+      <a href="about.html" class="nav-button">About</a>
+      <a href="services.html" class="nav-button">Services</a>
+      <a href="contact.html" class="nav-button">Contact</a>
+      <a href="loginpage.html" class="nav-button login">Login</a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div class="about-container">
+      <h1>About Trip Companion</h1>
+      <p>Trip Companion is your ultimate travel planning and management solution. We understand that planning a trip can be overwhelming, which is why we've created a platform that makes travel planning simple, efficient, and enjoyable.</p>
+      
+      <p>Our platform combines cutting-edge technology with user-friendly design to help you plan your perfect trip. Whether you're a solo traveler, a family on vacation, or a group of friends exploring new destinations, Trip Companion has got you covered.</p>
+      
+      <div class="mission">
+        <h2>Our Mission</h2>
+        <p>To make travel planning accessible, enjoyable, and stress-free for everyone. We believe that everyone should be able to experience the joy of travel without the hassle of complex planning.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Remove bottom navigation bar HTML -->
+</body>
+</html>

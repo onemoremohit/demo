@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VibeTrip Features</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: url('https://c0.wallpaperflare.com/preview/287/224/963/people-men-women-crowd-hands.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      padding-top: 70px; /* space for fixed navbar */
+      font-size: 14px;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      z-index: 0;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-button.login {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .nav-button.login:hover {
+      background: #e6b800;
+    }
+
+    .nav-button.services {
+      background: #000000 !important;
+      color: white !important;
+    }
+
+    .nav-button.services:hover {
+      background: #000000 !important;
+      color: white !important;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 25px;
+      font-size: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, background 0.3s ease;
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.6s ease forwards;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+    .card:nth-child(6) { animation-delay: 0.6s; }
+    .card:nth-child(7) { animation-delay: 0.7s; }
+
+    .card h3 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #f1f1f1;
+      line-height: 1.4;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 13px;
+      z-index: 2;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h2 { font-size: 18px; }
+      .card h3 { font-size: 14px; }
+      .container {
+        padding: 20px;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <a href="home.html" class="logo">TRIP COMPANION</a>
+    <div class="nav-buttons">
+      <a href="home.html" class="nav-button">Home</a>
+      <a href="features.html" class="nav-button">Features</a>
+      <a href="about.html" class="nav-button">About</a>
+      <a href="services.html" class="nav-button">Services</a>
+      <a href="contact.html" class="nav-button">Contact</a>
+      <a href="loginpage.html" class="nav-button login">Login</a>
+    </div>
+  </nav>
+
+  <a href="javascript:history.back()" class="back-btn">← Back</a>
+
+  <div class="container">
+    <h2>🧩 Key Features of Trip companion</h2>
+    <div class="features" id="features">
+      <div class="card">
+        <h3>1. User Onboarding & Profiles</h3>
+        <p>Name, age, gender, location, travel preferences. Quick interest/personality quiz to assess "vibe". Option to join solo or as a group.</p>
+      </div>
+      <div class="card">
+        <h3>2. Vibe Matching Engine</h3>
+        <p>Matches based on quiz, preferences, budget & schedule. Supports real-time and async matching. ML-based or rule-based logic.</p>
+      </div>
+      <div class="card">
+        <h3>3. Live Chat & Icebreakers</h3>
+        <p>Brief chats or games to break the ice. Timer-based interaction. If they vibe, both can tap "Let's Trip!"</p>
+      </div>
+      <div class="card">
+        <h3>4. Trip Recommendation Engine</h3>
+        <p>Destination suggestions based on interests, location, budget, weather. Integrates travel APIs like Skyscanner, Amadeus, etc.</p>
+      </div>
+      <div class="card">
+        <h3>5. Trip Planning Module</h3>
+        <p>Itinerary builder, accommodation and activity planner. Collaborate in real time. Option to book directly via the app.</p>
+      </div>
+      <div class="card">
+        <h3>6. Safety & Verification</h3>
+        <p>ID verification, optional social profiles, and emergency contact options to ensure safe meetups and travels.</p>
+      </div>
+      <div class="card">
+        <h3>7. Post-Trip Review & Community</h3>
+        <p>Review companions, share photos, and plan future trips together. Build a travel community through shared experiences.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

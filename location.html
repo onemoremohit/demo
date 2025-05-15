@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Permission</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .background-blur {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://tse4.mm.bing.net/th/id/OIP.LR9onzNW6vHnVjsL2RugjwHaEL?cb=iwc1&rs=1&pid=ImgDetMain');
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px) brightness(0.7);
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      max-width: 90%;
+      width: 350px;
+    }
+
+    .icon-img {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    button {
+      padding: 15px 20px;
+      width: 100%;
+      background-color: black;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-blur"></div>
+  <div class="container">
+  
+    <h1>Now, can we get your location?</h1>
+    <p>We need it so we can show you all the great people nearby (or far away).</p>
+    <button>Set location services</button>
+  </div>
+</body>
+</html>

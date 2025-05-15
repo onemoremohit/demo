@@ -1,0 +1,239 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trip Companion Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://im.whatshot.in/img/2020/Jan/shutterstock-1321441472-cropped-1580207153-1580300957.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-button.login {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .nav-button.login:hover {
+      background: #e6b800;
+    }
+
+    /* Adjust main content to account for fixed nav */
+    .container {
+      margin-top: 70px;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 1;
+    }
+
+    .form-box, .login-box {
+      background-color: rgba(0, 0, 0, 0.75);
+      border: 1px solid #333;
+      padding: 40px 30px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      width: 320px;
+    }
+
+    .logo {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .text {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .fb-btn {
+      background-color: #18a6f2;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      color: #f3e5e5;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #444;
+    }
+
+    .divider span {
+      margin: 0 10px;
+      font-size: 12px;
+    }
+
+    form input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: white;
+    }
+
+    form input::placeholder {
+      color: #aaa;
+    }
+
+    .signup-btn {
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .small-text {
+      font-size: 11px;
+      color: #bbb;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #0095f6;
+      text-decoration: none;
+    }
+
+    .login-box {
+      padding: 15px 30px;
+      font-size: 14px;
+      background-color: rgba(0, 0, 0, 0.75);
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .login-box a {
+      color: #0095f6;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .form-box, .login-box {
+            width: 90%;
+            padding: 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="top-nav">
+    <a href="home.html" class="logo">TRIP COMPANION</a>
+    <div class="nav-buttons">
+      <a href="home.html" class="nav-button">Home</a>
+      <a href="features.html" class="nav-button">Features</a>
+      <a href="about.html" class="nav-button">About</a>
+      <a href="services.html" class="nav-button">Services</a>
+      <a href="contact.html" class="nav-button">Contact</a>
+      <a href="loginpage.html" class="nav-button login">Login</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="form-box">
+      <h1 class="logo">Trip Companion</h1>
+      <div class="divider"><span>Sign in</span></div>
+      <form>
+        <input type="text" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <input type="text" placeholder="Full Name" required>
+        <input type="text" placeholder="Username" required>
+        
+        <button type="submit" class="signup-btn">Sign up</button>
+      </form>
+    </div>
+    <div class="login-box">
+      <p>Have an account? <a href="loginpage.html">Log in</a></p>
+    </div>
+  </div>
+</body>
+</html>

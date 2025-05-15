@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Companion - Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Profile Header Styles */
+        .profile-header {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .profile-cover {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            margin-top: -80px;
+        }
+
+        .profile-picture {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            border: 5px solid white;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 2em;
+            margin: 10px 0;
+            color: #1a1a1a;
+        }
+
+        .profile-location {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile-location i {
+            margin-right: 5px;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Bio Section Styles */
+        .bio-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .bio-section h2 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .bio-text {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .interest-tag {
+            background-color: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #495057;
+        }
+
+        /* Photos Section Styles */
+        .photos-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .photos-section h2 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-stats {
+                gap: 20px;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .profile-cover {
+                height: 200px;
+            }
+
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .profile-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Edit Button Styles */
+        .edit-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .edit-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Edit Form Styles */
+        .edit-form {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .edit-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .save-button,
+        .cancel-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .save-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .save-button:hover {
+            background-color: #218838;
+        }
+
+        .cancel-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .cancel-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Profile Picture Edit Styles */
+        .profile-picture-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+        }
+
+        .profile-picture-edit {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .profile-picture-edit:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        #profilePictureInput {
+            display: none;
+        }
+
+        /* Interest Tag Edit Styles */
+        .interest-tag {
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .remove-interest {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .add-interest {
+            background-color: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #495057;
+            cursor: pointer;
+            border: 1px dashed #495057;
+        }
+
+        .add-interest:hover {
+            background-color: #dee2e6;
+        }
+
+        /* Name Edit Styles */
+        .profile-name-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .profile-name {
+            margin: 0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .profile-name:hover {
+            color: #007bff;
+        }
+
+        .name-edit-icon {
+            color: #007bff;
+            cursor: pointer;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .profile-name-container:hover .name-edit-icon {
+            opacity: 1;
+        }
+
+        .name-edit-form {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .name-edit-form.active {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .name-input {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1.5em;
+            text-align: center;
+            width: 200px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-button {
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-button:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .follower-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .follower-item:last-child {
+            border-bottom: none;
+        }
+
+        .follower-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .follower-info {
+            flex-grow: 1;
+        }
+
+        .follower-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .follower-location {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .follow-button {
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+
+        .follow-button.following {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+
+        .follow-button.not-following {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .follow-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Trip Styles */
+        .trip-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .trip-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .trip-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .trip-location {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .trip-date {
+            color: #888;
+            font-size: 0.8em;
+        }
+
+        .trip-description {
+            margin: 10px 0;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .trip-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .trip-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .empty-trips {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .empty-trips i {
+            font-size: 48px;
+            color: #dee2e6;
+            margin-bottom: 15px;
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            padding: 15px 0;
+        }
+
+        .bottom-nav ul {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 15px;
+            list-style: none;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 8px;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+                       -5px -5px 10px rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 70px;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+        }
+
+        .nav-item span {
+            font-size: 11px;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(145deg, #2d2d2d, #1d1d1d);
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3),
+                       -6px -6px 12px rgba(255, 255, 255, 0.07);
+            color: #00b4d8;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(145deg, #0077b6, #005f8e);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-nav {
+                padding: 10px 0;
+            }
+
+            .bottom-nav ul {
+                padding: 0 8px;
+                gap: 4px;
+            }
+
+            .nav-item {
+                min-width: 55px;
+                padding: 8px 10px;
+            }
+
+            .nav-item i {
+                font-size: 16px;
+            }
+
+            .nav-item span {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-cover">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Cover Photo" class="cover-photo">
+            </div>
+            <div class="profile-info">
+                <div class="profile-picture-container">
+                    <div class="profile-picture">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde" alt="Profile Picture" id="profilePicture">
+                    </div>
+                    <label for="profilePictureInput" class="profile-picture-edit">
+                        <i class="fas fa-camera"></i> Edit
+                    </label>
+                    <input type="file" id="profilePictureInput" accept="image/*">
+                </div>
+                <div class="profile-name-container">
+                    <h1 class="profile-name" id="profileName">John Doe</h1>
+                    <i class="fas fa-edit name-edit-icon" onclick="toggleNameEdit()"></i>
+                </div>
+                <div class="name-edit-form" id="nameEditForm">
+                    <input type="text" class="name-input" id="nameInput" placeholder="Enter your name">
+                    <button class="save-button" onclick="saveName()">Save</button>
+                    <button class="cancel-button" onclick="toggleNameEdit()">Cancel</button>
+                </div>
+                <p class="profile-location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                <div class="profile-stats">
+                    <div class="stat" onclick="showTripsList()" style="cursor: pointer;">
+                        <span class="stat-number" id="tripsCount">0</span>
+                        <span class="stat-label">Trips</span>
+                    </div>
+                    <div class="stat" onclick="showFollowersList()" style="cursor: pointer;">
+                        <span class="stat-number" id="followersCount">0</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat" onclick="showFollowingList()" style="cursor: pointer;">
+                        <span class="stat-number" id="followingCount">0</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                </div>
+
+                <!-- Trips Modal -->
+                <div id="tripsModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>My Trips</h2>
+                            <div>
+                                <button class="edit-button" onclick="showAddTripForm()">
+                                    <i class="fas fa-plus"></i> Add Trip
+                                </button>
+                                <span class="close-button" onclick="closeTripsModal()">&times;</span>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="tripsList">
+                            <!-- Trips list will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add/Edit Trip Form -->
+                <div id="tripFormModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="tripFormTitle">Add New Trip</h2>
+                            <span class="close-button" onclick="closeTripForm()">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <form id="tripForm" onsubmit="saveTrip(event)">
+                                <input type="hidden" id="tripId">
+                                <div class="form-group">
+                                    <label for="tripTitle">Trip Title</label>
+                                    <input type="text" id="tripTitle" required placeholder="Enter trip title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tripLocation">Location</label>
+                                    <input type="text" id="tripLocation" required placeholder="Enter location">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tripDate">Date</label>
+                                    <input type="date" id="tripDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tripDescription">Description</label>
+                                    <textarea id="tripDescription" rows="4" placeholder="Describe your trip..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tripImage">Trip Image</label>
+                                    <input type="file" id="tripImage" accept="image/*">
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="submit" class="save-button">Save Trip</button>
+                                    <button type="button" class="cancel-button" onclick="closeTripForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="bio-section">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>About Me</h2>
+                    <button class="edit-button" onclick="toggleBioEdit()">
+                        <i class="fas fa-edit"></i> Edit Bio
+                    </button>
+                </div>
+                <p class="bio-text">
+                    Adventure seeker and travel enthusiast! I love exploring new cultures, trying local cuisines, 
+                    and meeting fellow travelers. Always up for spontaneous road trips and hiking adventures. 
+                    Let's connect and share travel stories!
+                </p>
+                <div class="edit-form" id="bioEditForm">
+                    <div class="form-group">
+                        <label for="bioText">Bio</label>
+                        <textarea id="bioText" placeholder="Tell us about yourself..."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button class="save-button" onclick="saveBio()">Save</button>
+                        <button class="cancel-button" onclick="toggleBioEdit()">Cancel</button>
+                    </div>
+                </div>
+                <div class="interests">
+                    <span class="interest-tag">Hiking <i class="fas fa-times remove-interest"></i></span>
+                    <span class="interest-tag">Photography <i class="fas fa-times remove-interest"></i></span>
+                    <span class="interest-tag">Foodie <i class="fas fa-times remove-interest"></i></span>
+                    <span class="interest-tag">Culture <i class="fas fa-times remove-interest"></i></span>
+                    <span class="add-interest" onclick="addNewInterest()">+ Add Interest</span>
+                </div>
+            </div>
+
+            <div class="photos-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>Photo Gallery</h2>
+                    <button class="edit-button" onclick="document.getElementById('photoInput').click()">
+                        <i class="fas fa-plus"></i> Add Photos
+                    </button>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" multiple style="display: none;">
+                <div class="photo-grid" id="photoGrid">
+                    <div style="text-align: center; padding: 40px; background-color: #f8f9fa; border-radius: 10px; color: #6c757d;">
+                        <i class="fas fa-images" style="font-size: 48px; margin-bottom: 15px; color: #dee2e6;"></i>
+                        <p style="margin-bottom: 20px;">No photos yet. Start by adding some photos to your gallery!</p>
+                        <button class="edit-button" onclick="document.getElementById('photoInput').click()">
+                            <i class="fas fa-plus"></i> Add Photos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <ul>
+            <li>
+                <a href="mainpage.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Explore</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Visit</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Recommendations</span>
+                </a>
+            </li>
+            <li>
+                <a href="profile.html" class="nav-item active">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Your Profile</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        // Profile Picture Edit
+        document.getElementById('profilePictureInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Bio Edit
+        function toggleBioEdit() {
+            const form = document.getElementById('bioEditForm');
+            const bioText = document.querySelector('.bio-text');
+            form.classList.toggle('active');
+            
+            if (form.classList.contains('active')) {
+                document.getElementById('bioText').value = bioText.textContent.trim();
+            }
+        }
+
+        function saveBio() {
+            const newBio = document.getElementById('bioText').value;
+            document.querySelector('.bio-text').textContent = newBio;
+            toggleBioEdit();
+        }
+
+        // Interests
+        function addNewInterest() {
+            const interest = prompt('Enter new interest:');
+            if (interest) {
+                const interestsContainer = document.querySelector('.interests');
+                const newTag = document.createElement('span');
+                newTag.className = 'interest-tag';
+                newTag.innerHTML = `${interest} <i class="fas fa-times remove-interest"></i>`;
+                interestsContainer.insertBefore(newTag, document.querySelector('.add-interest'));
+            }
+        }
+
+        // Remove Interest
+        document.querySelector('.interests').addEventListener('click', function(e) {
+            if (e.target.classList.contains('remove-interest')) {
+                e.target.parentElement.remove();
+            }
+        });
+
+        // Photo Gallery Management
+        let userPhotos = [];
+
+        function addPhotoToGallery(photoUrl) {
+            const photoGrid = document.getElementById('photoGrid');
+            // Remove empty gallery message if it exists
+            if (photoGrid.querySelector('div[style*="text-align: center"]')) {
+                photoGrid.innerHTML = '';
+            }
+
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
+            
+            const img = document.createElement('img');
+            img.src = photoUrl;
+            img.alt = 'Travel Photo';
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'edit-button';
+            deleteBtn.style.position = 'absolute';
+            deleteBtn.style.top = '10px';
+            deleteBtn.style.right = '10px';
+            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteBtn.onclick = () => removePhoto(photoItem, photoUrl);
+            
+            photoItem.appendChild(img);
+            photoItem.appendChild(deleteBtn);
+            photoGrid.appendChild(photoItem);
+            
+            userPhotos.push(photoUrl);
+        }
+
+        function removePhoto(photoElement, photoUrl) {
+            if (confirm('Are you sure you want to remove this photo?')) {
+                photoElement.remove();
+                userPhotos = userPhotos.filter(url => url !== photoUrl);
+                
+                // Show empty gallery message if no photos left
+                if (userPhotos.length === 0) {
+                    const photoGrid = document.getElementById('photoGrid');
+                    photoGrid.innerHTML = `
+                        <div style="text-align: center; padding: 40px; background-color: #f8f9fa; border-radius: 10px; color: #6c757d;">
+                            <i class="fas fa-images" style="font-size: 48px; margin-bottom: 15px; color: #dee2e6;"></i>
+                            <p style="margin-bottom: 20px;">No photos yet. Start by adding some photos to your gallery!</p>
+                            <button class="edit-button" onclick="document.getElementById('photoInput').click()">
+                                <i class="fas fa-plus"></i> Add Photos
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Handle photo upload
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            for (let file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    addPhotoToGallery(e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Name Edit Functions
+        function toggleNameEdit() {
+            const form = document.getElementById('nameEditForm');
+            const nameText = document.getElementById('profileName');
+            form.classList.toggle('active');
+            
+            if (form.classList.contains('active')) {
+                document.getElementById('nameInput').value = nameText.textContent;
+                document.getElementById('nameInput').focus();
+            }
+        }
+
+        function saveName() {
+            const newName = document.getElementById('nameInput').value.trim();
+            if (newName) {
+                document.getElementById('profileName').textContent = newName;
+                toggleNameEdit();
+            }
+        }
+
+        // Followers and Following Management
+        let followers = [];
+        let following = [];
+
+        // Sample data - Replace with actual API calls
+        function loadFollowersAndFollowing() {
+            // Simulated API call to get followers
+            followers = [
+                { id: 1, name: 'Alice Smith', location: 'London, UK', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330' },
+                { id: 2, name: 'Bob Johnson', location: 'Paris, France', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e' },
+                { id: 3, name: 'Carol White', location: 'Tokyo, Japan', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80' }
+            ];
+
+            // Simulated API call to get following
+            following = [
+                { id: 4, name: 'David Brown', location: 'New York, USA', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e' },
+                { id: 5, name: 'Eva Green', location: 'Berlin, Germany', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2' }
+            ];
+
+            updateCounts();
+        }
+
+        function updateCounts() {
+            document.getElementById('followersCount').textContent = followers.length;
+            document.getElementById('followingCount').textContent = following.length;
+        }
+
+        function showFollowersList() {
+            const modal = document.getElementById('followersModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const followersList = document.getElementById('followersList');
+            
+            modalTitle.textContent = 'Followers';
+            followersList.innerHTML = '';
+            
+            followers.forEach(follower => {
+                const isFollowing = following.some(f => f.id === follower.id);
+                const followerElement = createFollowerElement(follower, isFollowing);
+                followersList.appendChild(followerElement);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        function showFollowingList() {
+            const modal = document.getElementById('followersModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const followersList = document.getElementById('followersList');
+            
+            modalTitle.textContent = 'Following';
+            followersList.innerHTML = '';
+            
+            following.forEach(followed => {
+                const followerElement = createFollowerElement(followed, true);
+                followersList.appendChild(followerElement);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        function createFollowerElement(user, isFollowing) {
+            const div = document.createElement('div');
+            div.className = 'follower-item';
+            div.innerHTML = `
+                <img src="${user.avatar}" alt="${user.name}" class="follower-avatar">
+                <div class="follower-info">
+                    <div class="follower-name">${user.name}</div>
+                    <div class="follower-location">${user.location}</div>
+                </div>
+                <button class="follow-button ${isFollowing ? 'following' : 'not-following'}" 
+                        onclick="toggleFollow(${user.id}, this)">
+                    ${isFollowing ? 'Following' : 'Follow'}
+                </button>
+            `;
+            return div;
+        }
+
+        function toggleFollow(userId, button) {
+            const isFollowing = button.classList.contains('following');
+            
+            if (isFollowing) {
+                // Unfollow
+                following = following.filter(f => f.id !== userId);
+                button.classList.remove('following');
+                button.classList.add('not-following');
+                button.textContent = 'Follow';
+            } else {
+                // Follow
+                const userToFollow = followers.find(f => f.id === userId) || 
+                                  { id: userId, name: 'New User', location: 'Unknown', avatar: 'https://via.placeholder.com/40' };
+                following.push(userToFollow);
+                button.classList.remove('not-following');
+                button.classList.add('following');
+                button.textContent = 'Following';
+            }
+            
+            updateCounts();
+        }
+
+        function closeModal() {
+            document.getElementById('followersModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('followersModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Load initial data
+        loadFollowersAndFollowing();
+
+        // Trip Management
+        let trips = [];
+
+        function loadTrips() {
+            // Sample trips data - Replace with actual API calls
+            trips = [
+                {
+                    id: 1,
+                    title: 'Summer in Paris',
+                    location: 'Paris, France',
+                    date: '2024-07-15',
+                    description: 'Exploring the city of love with friends. Visiting the Eiffel Tower, Louvre Museum, and enjoying French cuisine.',
+                    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34'
+                },
+                {
+                    id: 2,
+                    title: 'Mountain Hiking',
+                    location: 'Swiss Alps',
+                    date: '2024-08-20',
+                    description: 'Challenging hike through the beautiful Swiss Alps. Planning to reach the summit and enjoy the breathtaking views.',
+                    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b'
+                }
+            ];
+            updateTripsCount();
+            renderTrips();
+        }
+
+        function updateTripsCount() {
+            document.getElementById('tripsCount').textContent = trips.length;
+        }
+
+        function showTripsList() {
+            const modal = document.getElementById('tripsModal');
+            modal.style.display = 'block';
+            renderTrips();
+        }
+
+        function closeTripsModal() {
+            document.getElementById('tripsModal').style.display = 'none';
+        }
+
+        function renderTrips() {
+            const tripsList = document.getElementById('tripsList');
+            if (trips.length === 0) {
+                tripsList.innerHTML = `
+                    <div class="empty-trips">
+                        <i class="fas fa-plane"></i>
+                        <p>No trips yet. Start by adding your first trip!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            tripsList.innerHTML = trips.map(trip => `
+                <div class="trip-item">
+                    ${trip.image ? `<img src="${trip.image}" alt="${trip.title}" class="trip-image">` : ''}
+                    <div class="trip-header">
+                        <div>
+                            <div class="trip-title">${trip.title}</div>
+                            <div class="trip-location"><i class="fas fa-map-marker-alt"></i> ${trip.location}</div>
+                            <div class="trip-date"><i class="fas fa-calendar"></i> ${new Date(trip.date).toLocaleDateString()}</div>
+                        </div>
+                        <div class="trip-actions">
+                            <button class="edit-button" onclick="editTrip(${trip.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="edit-button" onclick="deleteTrip(${trip.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="trip-description">${trip.description}</div>
+                </div>
+            `).join('');
+        }
+
+        function showAddTripForm() {
+            document.getElementById('tripFormTitle').textContent = 'Add New Trip';
+            document.getElementById('tripForm').reset();
+            document.getElementById('tripId').value = '';
+            document.getElementById('tripFormModal').style.display = 'block';
+        }
+
+        function editTrip(tripId) {
+            const trip = trips.find(t => t.id === tripId);
+            if (trip) {
+                document.getElementById('tripFormTitle').textContent = 'Edit Trip';
+                document.getElementById('tripId').value = trip.id;
+                document.getElementById('tripTitle').value = trip.title;
+                document.getElementById('tripLocation').value = trip.location;
+                document.getElementById('tripDate').value = trip.date;
+                document.getElementById('tripDescription').value = trip.description;
+                document.getElementById('tripFormModal').style.display = 'block';
+            }
+        }
+
+        function closeTripForm() {
+            document.getElementById('tripFormModal').style.display = 'none';
+        }
+
+        function saveTrip(event) {
+            event.preventDefault();
+            const tripId = document.getElementById('tripId').value;
+            const tripData = {
+                id: tripId ? parseInt(tripId) : Date.now(),
+                title: document.getElementById('tripTitle').value,
+                location: document.getElementById('tripLocation').value,
+                date: document.getElementById('tripDate').value,
+                description: document.getElementById('tripDescription').value,
+                image: document.getElementById('tripImage').files[0] ? 
+                      URL.createObjectURL(document.getElementById('tripImage').files[0]) : 
+                      trips.find(t => t.id === parseInt(tripId))?.image
+            };
+
+            if (tripId) {
+                // Update existing trip
+                const index = trips.findIndex(t => t.id === parseInt(tripId));
+                if (index !== -1) {
+                    trips[index] = tripData;
+                }
+            } else {
+                // Add new trip
+                trips.push(tripData);
+            }
+
+            updateTripsCount();
+            renderTrips();
+            closeTripForm();
+        }
+
+        function deleteTrip(tripId) {
+            if (confirm('Are you sure you want to delete this trip?')) {
+                trips = trips.filter(t => t.id !== tripId);
+                updateTripsCount();
+                renderTrips();
+            }
+        }
+
+        // Load initial data
+        loadTrips();
+    </script>
+</body>
+</html> 
